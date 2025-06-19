@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoResume Analyzer</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>AutoResume Analyzer</h1>
+
+    <form id="resumeForm">
+      <label for="resume">Upload Resume (PDF):</label>
+      <input type="file" id="resume" name="resume" accept=".pdf" required />
+
+      <label for="jobDesc">Enter Job Description :</label>
+      <textarea id="jobDesc" name="jobDesc" rows="5" placeholder="job description" required></textarea>
+
+      <button type="submit">Analyze</button>
+    </form>
+
+    <div id="result" class="hidden">
+      <h2>Match Result</h2>
+      <p><strong>Match Score:</strong> <span id="score"></span></p>
+      <p><strong>Matched Skills:</strong> <span id="matched"></span></p>
+      <p><strong>Missing Skills:</strong> <span id="missing"></span></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('resumeForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('resume');
+      const jobDesc = document.getElementById('jobDesc').value;
+
+      if (fileInput.files.length === 0) {
+        alert("Please upload a PDF resume.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      formData.append("job_description", jobDesc);
+
+      const response = await fetch("/upload-resume/", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      document.getElementById('score').innerText = data.match_percentage;
+      document.getElementById('matched').innerText = data.matched_skills.join(', ');
+      document.getElementById('missing').innerText = data.missing_skills.join(', ');
+      document.getElementById('result').classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>

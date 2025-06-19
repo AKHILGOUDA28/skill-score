@@ -1,0 +1,79 @@
+/* General Page Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  padding: 20px;
+}
+
+/* Container Box */
+.container {
+  background-color: #fff;
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #0077cc;
+  margin-bottom: 25px;
+}
+
+/* Labels */
+label {
+  font-weight: bold;
+  display: block;
+  margin: 15px 0 5px;
+}
+
+/* Inputs and Textareas */
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Button */
+button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Results Box */
+#result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #eaf7ff;
+  border-left: 5px solid #0077cc;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Highlighted Score */
+#score {
+  color: #0077cc;
+  font-weight: bold;
+  font-size: 20px;
+}
